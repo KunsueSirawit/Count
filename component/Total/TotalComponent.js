@@ -1,9 +1,12 @@
 import Link from "next/link"
 import styles from './Total.module.css'
+import { countState } from '../../atom/atoms';
+import { useRecoilValue } from 'recoil';
 
+const TotalComponent = () =>{
 
+    const count = useRecoilValue(countState);
 
-const TotalComponent = ({count}) =>{
     return (
         <>
             <div className={styles.countContainer}>

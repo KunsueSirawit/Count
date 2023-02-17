@@ -1,21 +1,11 @@
-import { useState } from "react"
 import styles from './Count.module.css'
-import Router from "next/router"
-
+import { useRecoilState } from 'recoil';
+import { countState } from '../../atom/atoms';
+import Link from 'next/link';
 
 const Count = () =>{
 
-    const [ count , setCount ] = useState(0)
-
-    function sendProps(){
-        Router.push({
-            pathname: "/total",
-                query:{
-                    count
-                }
-        })
-    }
-
+    const [ count , setCount ] = useRecoilState(countState)
 
     function add(){
         setCount(count + 1)
@@ -32,7 +22,9 @@ const Count = () =>{
             <h1> {count} </h1>
             <button className={styles.button} onClick={()=>add()}>  + </button>
             </div>
-            <button className={styles.total} onClick={()=>sendProps()}> Total </button>
+            <Link href="total" className={styles.total}>
+            <label> Total </label>
+            </Link>
         </>
     )
 }
