@@ -1,11 +1,19 @@
 import Link from "next/link"
 import styles from './Total.module.css'
 import { countState } from '../../atom/atoms';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue , useSetRecoilState } from 'recoil';
+import { useEffect } from "react";
+
 
 const TotalComponent = () =>{
 
     const count = useRecoilValue(countState);
+    const setCount = useSetRecoilState(countState);
+
+    useEffect(()=>{
+        const data = window.localStorage.getItem('Count')
+        setCount(JSON.parse(data))
+    },[])
 
     return (
         <>
